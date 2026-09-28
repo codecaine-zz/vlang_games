@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Air Hockey</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <div id="ui-layer">
+            <div id="main-menu" class="screen active">
+                <h1>Neon Air Hockey</h1>
+                <p>Move mouse to control your mallet. First to 7 points wins!</p>
+                <div class="difficulty-select">
+                    <button class="diff-btn" data-diff="easy">Easy</button>
+                    <button class="diff-btn active" data-diff="medium">Medium</button>
+                    <button class="diff-btn" data-diff="hard">Pro</button>
+                </div>
+                <button id="start-btn" class="glow-btn">Play</button>
+            </div>
+            
+            <div id="hud" class="screen">
+                <div class="scores">
+                    <span id="player-score">0</span>
+                    <span class="divider">-</span>
+                    <span id="ai-score">0</span>
+                </div>
+                <div class="controls">
+                    <button id="mute-btn">🔊</button>
+                    <button id="fullscreen-btn">⛶</button>
+                </div>
+            </div>
+
+            <div id="goal-overlay" class="screen">
+                <h2 id="goal-text" class="glow-text">GOAL!</h2>
+            </div>
+
+            <div id="game-over" class="screen">
+                <h1 id="winner-text">You Win!</h1>
+                <p>Final Score: <span id="final-score">7 - 0</span></p>
+                <button id="play-again-btn" class="glow-btn">Play Again</button>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
