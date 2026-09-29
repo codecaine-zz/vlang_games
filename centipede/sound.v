@@ -158,17 +158,20 @@ pub fn (mut sm SoundManager) update_bgm(is_active bool) {
 	}
 }
 
-pub fn (mut sm SoundManager) play_clip(name string) bool {
+pub fn (sm &SoundManager) play_clip(name string) bool {
 	if !sm.sound_enabled || !sm.sfx_enabled {
 		return false
 	}
 	if clip := sm.clips[name] {
 		if clip.len > 0 {
-			sm.voices << ActiveVoice{
-				samples: clip
-				pos:     0
-				volume:  0.7
-				looping: false
+			unsafe {
+				mut msm := &SoundManager(sm)
+				msm.voices << ActiveVoice{
+					samples: clip
+					pos:     0
+					volume:  0.7
+					looping: false
+				}
 			}
 			return true
 		}
@@ -176,7 +179,7 @@ pub fn (mut sm SoundManager) play_clip(name string) bool {
 	return false
 }
 
-pub fn (mut sm SoundManager) play_pcm(pcm []i16) {
+pub fn (sm &SoundManager) play_pcm(pcm []i16) {
 	if !sm.sound_enabled || !sm.sfx_enabled || pcm.len == 0 {
 		return
 	}
@@ -184,31 +187,37 @@ pub fn (mut sm SoundManager) play_pcm(pcm []i16) {
 	for val in pcm {
 		s << f32(val) / 32768.0
 	}
-	sm.voices << ActiveVoice{
-		samples: s
-		pos:     0
-		volume:  0.7
-		looping: false
+	unsafe {
+		mut msm := &SoundManager(sm)
+		msm.voices << ActiveVoice{
+			samples: s
+			pos:     0
+			volume:  0.7
+			looping: false
+		}
 	}
 }
 
-pub fn (mut sm SoundManager) clear_audio() {
-	sm.voices.clear()
+pub fn (sm &SoundManager) clear_audio() {
+	unsafe {
+		mut msm := &SoundManager(sm)
+		msm.voices.clear()
+	}
 }
 
-pub fn (mut sm SoundManager) play_samples(samples []i16) {
+pub fn (sm &SoundManager) play_samples(samples []i16) {
 	sm.play_pcm(samples)
 }
 
-pub fn (mut sm SoundManager) play_sound_raw(samples []i16) {
+pub fn (sm &SoundManager) play_sound_raw(samples []i16) {
 	sm.play_pcm(samples)
 }
 
-pub fn (mut sm SoundManager) play_raw_samples(samples []i16) {
+pub fn (sm &SoundManager) play_raw_samples(samples []i16) {
 	sm.play_pcm(samples)
 }
 
-pub fn (mut sm SoundManager) play_sfx_pcm(pcm []i16, vol ...f32) {
+pub fn (sm &SoundManager) play_sfx_pcm(pcm []i16, vol ...f32) {
 	if !sm.sound_enabled || !sm.sfx_enabled || pcm.len == 0 {
 		return
 	}
@@ -220,11 +229,14 @@ pub fn (mut sm SoundManager) play_sfx_pcm(pcm []i16, vol ...f32) {
 	for val in pcm {
 		s << f32(val) / 32768.0
 	}
-	sm.voices << ActiveVoice{
-		samples: s
-		pos:     0
-		volume:  v
-		looping: false
+	unsafe {
+		mut msm := &SoundManager(sm)
+		msm.voices << ActiveVoice{
+			samples: s
+			pos:     0
+			volume:  v
+			looping: false
+		}
 	}
 }
 

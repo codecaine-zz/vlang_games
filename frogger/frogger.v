@@ -159,7 +159,7 @@ fn (mut g FroggerGame) update(dt f32) {
 	if g.state != .playing { return }
 
 	if g.shake_trauma > 0.0 {
-		g.shake_trauma = math.max(0.0, g.shake_trauma - dt * 2.2)
+		g.shake_trauma = f32(math.max(0.0, g.shake_trauma - dt * 2.2))
 	}
 
 	g.idle_timer += dt
@@ -256,7 +256,7 @@ fn (mut g FroggerGame) update(dt f32) {
 				if g.score > g.high_score {
 					g.high_score = g.score
 				}
-				g.shake_trauma = math.min(1.0, g.shake_trauma + 0.18)
+				g.shake_trauma = f32(math.min(1.0, g.shake_trauma + 0.18))
 				g.sound_mgr.play_dock_sound()
 				g.reset_frog()
 				break
@@ -277,7 +277,7 @@ fn (mut g FroggerGame) update(dt f32) {
 		if all_filled {
 			g.level++
 			g.score += 1000
-			g.shake_trauma = math.min(1.0, g.shake_trauma + 0.35)
+			g.shake_trauma = f32(math.min(1.0, g.shake_trauma + 0.35))
 			g.reset_docks()
 			g.init_objects()
 			g.reset_frog()
@@ -331,7 +331,7 @@ fn (mut g FroggerGame) hop(dir_x int, dir_y int) {
 }
 
 fn (mut g FroggerGame) handle_frog_death(is_squish bool) {
-	g.shake_trauma = math.min(1.0, g.shake_trauma + 0.55)
+	g.shake_trauma = f32(math.min(1.0, g.shake_trauma + 0.55))
 	if is_squish {
 		g.sound_mgr.play_squish_sound()
 	} else {

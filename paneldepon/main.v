@@ -1,8 +1,6 @@
 module main
 
 import gg
-import math
-import rand
 import os
 import time
 

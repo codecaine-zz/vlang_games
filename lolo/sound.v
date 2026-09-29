@@ -351,11 +351,6 @@ pub fn (mut sm SoundManager) cleanup() {
 	sm.voices.clear()
 }
 
-pub fn (sm &SoundManager) toggle_bgm() bool {
-	mut mutable_sm := unsafe { &SoundManager(sm) }
-	mutable_sm.bgm_enabled = !mutable_sm.bgm_enabled
-	return mutable_sm.bgm_enabled
-}
 
 pub fn (sm &SoundManager) play_step() {
 	if !sm.sound_enabled || false { return }

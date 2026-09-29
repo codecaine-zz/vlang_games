@@ -1,10 +1,8 @@
 module main
 
 import math
-import os
 import rand
 import gg
-import time
 import time
 
 const win_width = 1000

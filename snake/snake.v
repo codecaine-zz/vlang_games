@@ -12,7 +12,7 @@ enum Direction {
 	right
 }
 
-struct Point {
+pub struct Point {
 pub mut:
 	x int
 	y int

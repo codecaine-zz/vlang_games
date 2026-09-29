@@ -1,7 +1,6 @@
 module main
 
 import gg
-import math
 import time
 
 struct App {

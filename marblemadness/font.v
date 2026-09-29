@@ -214,7 +214,8 @@ pub fn draw_text(renderer &Renderer, text string, x int, y int, scale int, color
 			for row in 0 .. 8 {
 				row_bits := font_8x8[offset + row]
 				for col in 0 .. 8 {
-					if (row_bits >> (7 - col) & 1) != 0 {
+					bit := (row_bits >> (7 - col)) & 1
+					if bit != 0 {
 						rect := Rect{
 							x: cur_x + col * scale
 							y: y + row * scale

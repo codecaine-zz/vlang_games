@@ -1,7 +1,6 @@
 module main
 
 import math
-import rand
 import os
 import encoding.binary
 import sokol.audio

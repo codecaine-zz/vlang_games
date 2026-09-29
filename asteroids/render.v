@@ -399,10 +399,10 @@ fn render_asteroids_game(renderer &Renderer, game &AsteroidsGame, particles []Pa
 	w_span := int(math.max(f32(world_w), max_x - min_x))
 	h_span := int(math.max(f32(world_h), max_y - min_y))
 	for i in 0 .. 80 {
-		sx := int(min_x) + (i * 137 + 50) % w_span
-		sy := int(min_y) + (i * 263 + 30) % h_span
+		star_x := int(min_x) + (i * 137 + 50) % w_span
+		star_y := int(min_y) + (i * 263 + 30) % h_span
 		set_render_draw_color(renderer, 100, 130, 180, 200)
-		render_draw_point(renderer, sx, sy)
+		render_draw_point(renderer, star_x, star_y)
 	}
 
 	// Render Power-ups with glowing sprite badges

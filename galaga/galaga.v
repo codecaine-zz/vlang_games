@@ -278,7 +278,7 @@ fn (mut g GalagaGame) spawn_wave() {
 
 fn (mut g GalagaGame) update(dt f32) {
 	if g.shake_trauma > 0.0 {
-		g.shake_trauma = math.max(0.0, g.shake_trauma - dt * 2.2)
+		g.shake_trauma = f32(math.max(0.0, g.shake_trauma - dt * 2.2))
 	}
 
 	warp_mult := if g.stage_intro_timer > 0 { f32(3.0) } else { f32(1.0) }
@@ -397,7 +397,7 @@ fn (mut g GalagaGame) update(dt f32) {
 			g.player.is_dual = true
 			g.player.invuln_timer = 2.0
 			g.add_score(1000)
-			g.shake_trauma = math.min(1.0, g.shake_trauma + 0.35)
+			g.shake_trauma = f32(math.min(1.0, g.shake_trauma + 0.35))
 			g.sound_mgr.play_rescue_fanfare()
 		}
 		if rs.y > 620 {
@@ -595,11 +595,11 @@ fn (mut g GalagaGame) update(dt f32) {
 						b: 50
 						a: 255
 					})
-					g.shake_trauma = math.min(1.0, g.shake_trauma + match e.enemy_type {
+					g.shake_trauma = f32(math.min(1.0, g.shake_trauma + match e.enemy_type {
 						.boss { f32(0.30) }
 						.goei { f32(0.18) }
 						.zako { f32(0.12) }
-					})
+					}))
 					g.sound_mgr.play_kill_enemy(e.enemy_type, e.mode == .swooping)
 
 					// If boss holding captured ship was destroyed:
@@ -622,7 +622,7 @@ fn (mut g GalagaGame) update(dt f32) {
 						g.player.is_capturing = false
 					}
 				} else {
-					g.shake_trauma = math.min(1.0, g.shake_trauma + 0.15)
+					g.shake_trauma = f32(math.min(1.0, g.shake_trauma + 0.15))
 					g.sound_mgr.play_boss_hit()
 				}
 				break
@@ -681,7 +681,7 @@ fn (mut g GalagaGame) update(dt f32) {
 }
 
 fn (mut g GalagaGame) handle_player_death() {
-	g.shake_trauma = math.min(1.0, g.shake_trauma + 0.65)
+	g.shake_trauma = f32(math.min(1.0, g.shake_trauma + 0.65))
 	g.spawn_explosion(g.player.x, g.player.y, Color{
 		r: 255
 		g: 80

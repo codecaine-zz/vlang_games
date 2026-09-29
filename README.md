@@ -877,9 +877,20 @@ Welcome to the **V Game Arcade Collection**! A monumental collection of **89 com
 ## 🛠️ How to Build and Run
 
 ### Prerequisites
-Install the V programming language from [vlang.io](https://vlang.io/) or via Homebrew:
+Install the V programming language from [vlang.io](https://vlang.io/) or via package manager:
+
+**macOS (Homebrew):**
 ```bash
 brew install v
+# Verify V is installed:
+v version
+```
+
+**Ubuntu / Debian (APT):**
+Install the necessary C compiler, audio (`libasound2-dev`), OpenGL, and X11 development headers:
+```bash
+sudo apt update
+sudo apt install -y build-essential libasound2-dev libgl1-mesa-dev libx11-dev libxi-dev libxcursor-dev
 # Verify V is installed:
 v version
 ```

@@ -141,7 +141,7 @@ fn (mut g ShinobiGame) slash() {
 		if math.abs(d.x - slash_box_x) < 55.0 && math.abs(d.y - slash_box_y) < 40.0 {
 			d.active = false
 			g.score += 250
-			g.shake_trauma = math.min(1.0, g.shake_trauma + 0.28)
+			g.shake_trauma = f32(math.min(1.0, g.shake_trauma + 0.28))
 			g.sound_mgr.play_explosion_sound()
 		}
 	}
@@ -157,7 +157,7 @@ fn (mut g ShinobiGame) update(dt f32) {
 	if g.state != .playing { return }
 
 	if g.shake_trauma > 0.0 {
-		g.shake_trauma = math.max(0.0, g.shake_trauma - dt * 2.2)
+		g.shake_trauma = f32(math.max(0.0, g.shake_trauma - dt * 2.2))
 	}
 
 	g.score += int(dt * 50.0)
@@ -226,7 +226,7 @@ fn (mut g ShinobiGame) update(dt f32) {
 				s.active = false
 				d.active = false
 				g.score += 200
-				g.shake_trauma = math.min(1.0, g.shake_trauma + 0.22)
+				g.shake_trauma = f32(math.min(1.0, g.shake_trauma + 0.22))
 				g.sound_mgr.play_explosion_sound()
 				break
 			}
@@ -272,7 +272,7 @@ fn (mut g ShinobiGame) update(dt f32) {
 				// Deflect laser with katana!
 				l.active = false
 				g.score += 150
-				g.shake_trauma = math.min(1.0, g.shake_trauma + 0.25)
+				g.shake_trauma = f32(math.min(1.0, g.shake_trauma + 0.25))
 				g.sound_mgr.play_slash_sound()
 			} else {
 				g.handle_player_death()
@@ -285,7 +285,7 @@ fn (mut g ShinobiGame) update(dt f32) {
 
 fn (mut g ShinobiGame) handle_player_death() {
 	g.lives--
-	g.shake_trauma = math.min(1.0, g.shake_trauma + 0.60)
+	g.shake_trauma = f32(math.min(1.0, g.shake_trauma + 0.60))
 	if g.lives <= 0 {
 		g.state = .game_over
 	} else {

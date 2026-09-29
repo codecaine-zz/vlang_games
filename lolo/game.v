@@ -201,11 +201,6 @@ pub fn (d Direction) to_offset() (int, int) {
 // Core Game Entities
 // --------------------------------------------------
 
-pub struct Point {
-pub mut:
-	x int
-	y int
-}
 
 pub struct Lolo {
 pub mut:

@@ -129,9 +129,9 @@ fn on_event(e &gg.Event, data voidptr) {
 					app.sound_mgr.toggle_sfx()
 				}
 				.escape { exit(0) }
-				._1 { app.game.load_arena(0) }
-				._2 { app.game.load_arena(1) }
-				._3 { app.game.load_arena(2) }
+				._1 { app.game.load_arena(.funhouse) }
+				._2 { app.game.load_arena(.staircase) }
+				._3 { app.game.load_arena(.zero_g) }
 				.g { app.game.active_tool = .grab }
 				.t { app.game.active_tool = .tether }
 				.b { app.game.active_tool = .bomb }

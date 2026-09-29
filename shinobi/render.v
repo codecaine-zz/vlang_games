@@ -83,18 +83,18 @@ fn render_shinobi_game(renderer &Renderer, mut g ShinobiGame, tex &Texture) {
 	// 2. Draw Shurikens (Spinning Cyan Star)
 	for s in g.shurikens {
 		if !s.active { continue }
-		sx := int(s.x)
-		sy := int(s.y)
+		shur_x := int(s.x)
+		shur_y := int(s.y)
 
 		if tex != unsafe { nil } {
 			rot_idx := (int(s.x / 12.0)) % 4
 			src := Rect{ x: rot_idx * 32, y: 128, w: 32, h: 32 }
-			dst := Rect{ x: sx - 10, y: sy - 10, w: 20, h: 20 }
+			dst := Rect{ x: shur_x - 10, y: shur_y - 10, w: 20, h: 20 }
 			render_copy(renderer, tex, &src, &dst)
 		} else {
 			set_render_draw_color(renderer, 0, 255, 255, 255)
-			s1 := Rect{ x: sx - 6, y: sy - 2, w: 12, h: 4 }
-			s2 := Rect{ x: sx - 2, y: sy - 6, w: 4, h: 12 }
+			s1 := Rect{ x: shur_x - 6, y: shur_y - 2, w: 12, h: 4 }
+			s2 := Rect{ x: shur_x - 2, y: shur_y - 6, w: 4, h: 12 }
 			render_fill_rect(renderer, &s1)
 			render_fill_rect(renderer, &s2)
 		}

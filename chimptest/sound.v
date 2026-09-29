@@ -1,7 +1,6 @@
 module main
 
 import math
-import rand
 import os
 import encoding.binary
 import sokol.audio
@@ -287,7 +286,7 @@ pub fn (mut sm SoundManager) cleanup() {
 	sm.voices.clear()
 }
 
-pub fn (sm &SoundManager) play_tile_chime(step int) {
+pub fn (mut sm SoundManager) play_tile_chime(step int) {
 	base_freq := 440.0 * math.pow(1.05946, f64(step * 2)) // Ascending pitch
 	dur := 0.09
 	count := int(audio_sample_rate * dur)
@@ -302,7 +301,7 @@ pub fn (sm &SoundManager) play_tile_chime(step int) {
 	sm.play_samples(samples)
 }
 
-pub fn (sm &SoundManager) play_strike_buzzer() {
+pub fn (mut sm SoundManager) play_strike_buzzer() {
 	dur := 0.35
 	count := int(audio_sample_rate * dur)
 	mut samples := []i16{cap: count}
@@ -318,7 +317,7 @@ pub fn (sm &SoundManager) play_strike_buzzer() {
 	sm.play_samples(samples)
 }
 
-pub fn (sm &SoundManager) play_level_clear() {
+pub fn (mut sm SoundManager) play_level_clear() {
 	notes := [523.25, 659.25, 783.99, 1046.5]
 	dur := 0.08
 	count := int(audio_sample_rate * dur * f64(notes.len))
