@@ -112,12 +112,12 @@ pub fn (r &Renderer) visible_bounds() (f32, f32, f32, f32) {
 		h := if r.height > 0 { f32(r.height) } else { 600.0 }
 		return 0.0, 0.0, w, h
 	}
-	win_w := if r.last_win_w > 0 { f32(r.last_win_w) } else { f32(r.logical_w) }
-	win_h := if r.last_win_h > 0 { f32(r.last_win_h) } else { f32(r.logical_h) }
+	ww := if r.last_win_w > 0 { f32(r.last_win_w) } else { f32(r.logical_w) }
+	wh := if r.last_win_h > 0 { f32(r.last_win_h) } else { f32(r.logical_h) }
 	min_x := -r.offset_x / r.scale
 	min_y := -r.offset_y / r.scale
-	max_x := min_x + win_w / r.scale
-	max_y := min_y + win_h / r.scale
+	max_x := min_x + ww / r.scale
+	max_y := min_y + wh / r.scale
 	return min_x, min_y, max_x, max_y
 }
 

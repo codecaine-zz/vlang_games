@@ -45,7 +45,7 @@ fn draw_filled_circle(renderer &Renderer, cx int, cy int, r int, color Color) {
 	renderer.draw_circle_filled(f32(cx), f32(cy), f32(r), gg.Color{r: color.r, g: color.g, b: color.b, a: color.a})
 }
 
-fn draw_circle_outline(renderer &Renderer, cx int, cy int, r int, thickness int, color Color) {
+fn draw_circle_outline(renderer &Renderer, cx int, cy int, r int, _thickness int, color Color) {
 	if r <= 0 {
 		return
 	}
