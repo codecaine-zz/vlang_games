@@ -887,13 +887,20 @@ v version
 ```
 
 **Ubuntu / Debian (APT):**
-Install the necessary C compiler, audio (`libasound2-dev`), OpenGL, and X11 development headers:
+Install the necessary C compiler, audio (`libasound2-dev`, `pipewire-alsa`), OpenGL, and X11 development headers:
 ```bash
 sudo apt update
-sudo apt install -y build-essential libasound2-dev libgl1-mesa-dev libx11-dev libxi-dev libxcursor-dev
+sudo apt install -y build-essential libasound2-dev libasound2-plugins pipewire-alsa libgl1-mesa-dev libx11-dev libxi-dev libxcursor-dev
+
+# If using Homebrew on Linux (Linuxbrew), ensure ALSA finds the system PipeWire audio plugin:
+mkdir -p /home/linuxbrew/.linuxbrew/lib/alsa-lib
+ln -sf /usr/lib/*-linux-gnu/alsa-lib/* /home/linuxbrew/.linuxbrew/lib/alsa-lib/
+
 # Verify V is installed:
 v version
 ```
+
+> **Tip for Linux**: Run with `v -cc cc run <game>` to directly use the system GCC compiler and bypass TCC warnings.
 
 ### Running Any Game Directly
 To launch any game immediately, run `v run` followed by the game folder:
